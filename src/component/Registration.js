@@ -4,9 +4,12 @@ import {Link} from 'react-router-dom'
 import RegisterStyle from "./Registration.module.css"
 import { AiOutlineMail ,AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordFill} from "react-icons/ri";
+import { Data } from '../Data';
+import { useRecoilState } from 'recoil';
 
 
 export default function Registration() {
+  const [login ,setLogin] = useRecoilState(Data)
   useEffect(()=>{
     if(localStorage.getItem("userDetails")){
       let data= JSON.parse(localStorage.getItem("userDetails"))
@@ -30,14 +33,12 @@ export default function Registration() {
     const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (regEmail.test(email)) {
       setEM('');
-    } else if(!regEx.test(email) && email !== " "){
+    } else if(!regEmail.test(email) && email !== ""){
       setEM("Email is Not Valid");
-    }else{
-      setEM('');
     }
   }
   function captUserName(e) {
-    setUserName(e.target.value);
+    setUserName(e.target.value);  //first check e byub makin condition
     const userRegEx = /\s/g;
     if (userRegEx.test(!userName) ) {
       setUS('');
@@ -77,7 +78,7 @@ export default function Registration() {
       alert("you have enter wrong details")
     
     }else{
-    const userData= {Email :email , UserName : userName , Password : password}
+    const userData= {Email :email , UserName : userName , Password : password ,isSubScribe20 : false , isSubScribe50 : false}
     data.push(userData)
     setData([...data])
     if(show=== true){
@@ -85,6 +86,8 @@ export default function Registration() {
     }else{
       setShow(true)
       alert(`${userName.toUpperCase()} 👍 You Have Successfully Register` )
+      setLogin(true)
+      setShow(true)
     }
   }
   localStorage.setItem("userDetails" , JSON.stringify(data))
@@ -104,7 +107,6 @@ export default function Registration() {
     <div className={RegisterStyle.main}>
       <div className={RegisterStyle.form}>
       <form >
-      {show?<p>{`${userName.toUpperCase()} 👍 You Have Successfully Register`}</p> : "" }
         <h1>Registration Page</h1>
         <div className={RegisterStyle.email}>
         <label style={{fontSize:"2em"}}><AiOutlineMail/></label>
@@ -141,6 +143,7 @@ export default function Registration() {
         <p className={RegisterStyle.loginLink}>Go Back To Home <Link to='/'>Home</Link> </p>
     
       </form>
+      {show ? <p className={RegisterStyle.redirection}>Now You Can Go To <Link to='/'>Home</Link> To Get Subscription</p> : ""}
     </div>
     </div>
 </>

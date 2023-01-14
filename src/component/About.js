@@ -1,6 +1,7 @@
 import React from "react";
 import AboutStyle from "./About.module.css"
 import AboutNav from './AboutNav';
+import ReactPlayer from "react-player";
 
 export default function About() {
   return (
@@ -9,7 +10,14 @@ export default function About() {
     <div className={AboutStyle.main}>
     <div className={AboutStyle.aboutUp}>
     <div  className={AboutStyle.vdoone}>
-    <iframe width="200" height="290em" src="https://www.youtube.com/embed/oAM6H2LqT6A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+   
+     <ReactPlayer 
+                    url='https://youtu.be/X4ypAoU_T6c' 
+                    width = '100%'
+                    height = '100%'
+                    controls = {true}
+                    // className={style.video}
+                />
     </div>
     <div  className={AboutStyle.content}>
     <h1 style={{color:"red", fontSize:"2em"}}>About Us</h1>
@@ -19,7 +27,14 @@ export default function About() {
     </div>
     <div className={AboutStyle.aboutDown}>
     <div  className={AboutStyle.vdotwo}>
-    <iframe width="200" height="290" src="https://www.youtube.com/embed/oAM6H2LqT6A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    
+    <ReactPlayer 
+    url='https://www.youtube.com/embed/oAM6H2LqT6A' 
+    width = '100%'
+    height = '100%'
+    controls = {true}
+    // className={style.video}
+/>
     </div>
     <div  className={AboutStyle.content}>
     <h1 style={{color:"red"}}>Why Choose Us ?</h1>

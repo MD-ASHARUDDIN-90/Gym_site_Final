@@ -4,11 +4,17 @@ import {Link} from 'react-router-dom'
 import RegisterStyle from "./Registration.module.css"
 import {  AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordFill} from "react-icons/ri";
-import {useRecoilState} from 'recoil'
-import {Data} from '../Data'
+import {useRecoilState ,useRecoilValue} from 'recoil'
+import {Data , Data2 , Data3} from '../Data'
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const [show , setShow] = useState(false)
+  const navigate = useNavigate()
   const [newData ,setNewData] = useRecoilState(Data) 
+  setNewData(false)
+  const sub = useRecoilValue(Data2)
+  const sub1 = useRecoilValue(Data3)
   let getData= JSON.parse(localStorage.getItem("userDetails")) // local storage se array achuka
   console.log(getData , "i am from local") // data ara hai
  const[thisData ,setThisData]=useState([])
@@ -22,16 +28,26 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     const newARR = getData.filter(x=> x.UserName === userName   && x.Password === password)
-    console.log(newARR)
+    console.log(newARR , "i am matched data from local storage")
     if(newARR.length === 0){
       alert("user not found")
     }else{
       alert("you are logged in")
+      setShow(true)
       // const newUserLoggedIn = {UserName : userName , Password : password , isLog : true , isSub : false }
       setNewData(true)
+      if(sub === true){
+     navigate('/activity')
+      }if(sub1 === true){
+        navigate('/activity1 ')
+      }
     }
    
       
+  }
+
+  function loginButNotSUb(){
+    setNewData(true)
   }
 
   
@@ -74,7 +90,7 @@ export default function Login() {
       <input className={RegisterStyle.loginBtn} onClick={handleSubmit} type="button" value="SUBMIT" />
       <p >New User ? <Link to='/registration'>Registration</Link> </p>
       </form>
-      {newData ?<p className={RegisterStyle.popup}>NOW YOU CAN GET SUBSCRIBED TO OUR PREMIUM FEATURES <br/><Link to='/' style={{color : "white" , textDecoration : "none" , fontWeight: "bolder" , textShadow : "1px 1px black"}}>Home</Link> </p> : "" }
+      {show ?<p className={RegisterStyle.popup}>NOW YOU CAN GET SUBSCRIBED TO OUR PREMIUM FEATURES <br/><Link to='/' style={{color : "white" , textDecoration : "none" , fontWeight: "bolder" , textShadow : "1px 1px black"}}><button onClick={loginButNotSUb}>Home</button></Link> </p> : "" }
       </div>
       </div>
 </>

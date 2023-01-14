@@ -4,10 +4,12 @@ import PricingStyle from './Pricing.module.css'
 import {useRecoilState} from 'recoil'
 import {Data ,Data2 ,Data3} from '../Data'
 import {Link } from 'react-router-dom'
+// import Activity from './Activity'
+import { useNavigate } from "react-router-dom";
 
 export default function Pricing() {
-// let getData = JSON.parse(localStorage.getItem("userDetails"))
-
+let getData = JSON.parse(localStorage.getItem("userDetails"))
+const navigate = useNavigate()
 const [ sub ,setSub] = useRecoilState(Data2)  // 20
 const [ sub1 ,setSub1] = useRecoilState(Data3)  // 50
 const [ login ,setLogin] = useRecoilState(Data)  //login
@@ -15,11 +17,12 @@ const [ login ,setLogin] = useRecoilState(Data)  //login
 
 function confirmation(){
   if(login === true ){
-    window.confirm("Press Ok to confirm the plan")
+    confirm("Press Ok to confirm the plan")
     if(confirm("Press Ok to confirm the plan") == true){
       // setShow(true)
     setSub(true)
     setLogin(true)
+    navigate('/activity')
     alert("You have successfully subcribe now you can click to 'subscribed' button to go to activity page")
     }else{
       setSub(false)
@@ -29,14 +32,21 @@ function confirmation(){
     alert("LOGIN FIRST")
   }
 }
+
+function redirection(){
+  
+}
 function confirmationtwo(){
+
   if(login === true ){
-    window.confirm("Press Ok to confirm the plan")
-    if(confirm("Press Ok to confirm the plan") == true){
+    confirm("Press Ok to confirm the plan")
+    if(confirm("Press Ok to confirm the plan")){
       // setShow(true)
       setSub1(true)
+      
     setLogin(true)
     alert("You have successfully sub now you can click to subscribed button to go to activity page")
+    navigate('/activity1')
     }else{
       setSub1(false)
     }
