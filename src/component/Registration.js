@@ -6,15 +6,18 @@ import { AiOutlineMail ,AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordFill} from "react-icons/ri";
 import { Data } from '../Data';
 import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Registration() {
+  const navigate = useNavigate()
+  const [data ,setData]= useState([])
   const [login ,setLogin] = useRecoilState(Data)
   useEffect(()=>{
     if(localStorage.getItem("userDetails")){
       let data= JSON.parse(localStorage.getItem("userDetails"))
       setData(data)
-      console.log(data)
+      console.log(data) //local data pada h
     }
     },[])
   const [email, setEmail] = useState('');
@@ -24,7 +27,7 @@ export default function Registration() {
   const [PW, setPW] = useState('');
   const [US, setUS] = useState('');
   const [show, setShow] = useState(false);
-  const [data ,setData]= useState([])
+
 
 
 
@@ -71,14 +74,19 @@ export default function Registration() {
     
 
     //==================password
-   
-    if(email === "" || userName === "" || password=== ""){
+    console.log(data[0].Email, "ia am from local data") // undefinded
+     const alreadyRegister = data.find(x=> x.Email === email && x.UserName === userName)
+     console.log(alreadyRegister , "i am finded")
+     if(alreadyRegister){
+      alert("User Already Register")
+     }else{
+    if(email === ""  || userName === "" || password=== ""){
       alert("please enter something")
     }else if(EM === "EMAIL IS NOT VALID" || PW === "pw is Not Valid" || US === 'UserName is not Valid'){
       alert("you have enter wrong details")
     
-    }else{
-    const userData= {Email :email , UserName : userName , Password : password ,isSubScribe20 : false , isSubScribe50 : false}
+    }else{ 
+    const userData= {Email :email , UserName : userName , Password : password }
     data.push(userData)
     setData([...data])
     if(show=== true){
@@ -88,8 +96,12 @@ export default function Registration() {
       alert(`${userName.toUpperCase()} 👍 You Have Successfully Register` )
       setLogin(true)
       setShow(true)
+      setTimeout(() => {
+        navigate('/')
+      }, 5000);
     }
   }
+}
   localStorage.setItem("userDetails" , JSON.stringify(data))
  
   
@@ -143,7 +155,10 @@ export default function Registration() {
         <p className={RegisterStyle.loginLink}>Go Back To Home <Link to='/'>Home</Link> </p>
     
       </form>
-      {show ? <p className={RegisterStyle.redirection}>Now You Can Go To <Link to='/'>Home</Link> To Get Subscription</p> : ""}
+      {show ? <div>
+        <div id={RegisterStyle.timer}></div>
+        <p  className={RegisterStyle.redirection}>Now You Can Go To <Link to='/'>Home</Link> To Get Subscription</p> 
+        </div> : ""}
     </div>
     </div>
 </>

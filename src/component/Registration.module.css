@@ -82,6 +82,49 @@ text-align: center;
 padding-top: 6em;
 }
 
+#timer{
+
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    counter-reset: my-count 5;
+    animation: countdown 5s linear infinite;
+    
+  }
+  #timer::after {
+    content: counter(my-count);
+    font-size: 30em;
+  }
+  
+  @keyframes countdown {
+    0% {
+      background: hsl(0,100%,20%);
+    }
+    20% {
+      counter-increment: my-count -1;
+      background: hsl(90,100%,20%);
+    }
+    40% {
+      counter-increment: my-count -2;
+      background: hsl(180,100%,20%);
+    }
+    60% {
+      counter-increment: my-count -3;
+      background: hsl(270,100%,20%);
+    }
+    80% {
+      counter-increment: my-count -4;
+      background: hsl(360,100%,20%);
+    }
+    100% {
+      background: hsl(0,100%,20%);
+    }
+  }
+  
+
+
 @media screen and (max-width : 700px){
   .popup{
     width: 70%;
