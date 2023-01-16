@@ -71,7 +71,7 @@ border-radius: 1em;
 }
 
 .redirection{
-  position: absolute;
+  /* position: absolute; */
   background: rgb(144,149,235);
   background: linear-gradient(166deg, rgba(144,149,235,20) 4%, rgba(89,130,209,20) 48%, rgba(62,252,160,20) 70%);
   font-size: 4em;
@@ -79,49 +79,10 @@ border-radius: 1em;
 height: 70vh;
 opacity: 20;
 text-align: center;
-padding-top: 6em;
+padding-top: 3em;
 }
 
-#timer{
 
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    counter-reset: my-count 5;
-    animation: countdown 5s linear infinite;
-    
-  }
-  #timer::after {
-    content: counter(my-count);
-    font-size: 30em;
-  }
-  
-  @keyframes countdown {
-    0% {
-      background: hsl(0,100%,20%);
-    }
-    20% {
-      counter-increment: my-count -1;
-      background: hsl(90,100%,20%);
-    }
-    40% {
-      counter-increment: my-count -2;
-      background: hsl(180,100%,20%);
-    }
-    60% {
-      counter-increment: my-count -3;
-      background: hsl(270,100%,20%);
-    }
-    80% {
-      counter-increment: my-count -4;
-      background: hsl(360,100%,20%);
-    }
-    100% {
-      background: hsl(0,100%,20%);
-    }
-  }
   
 
 

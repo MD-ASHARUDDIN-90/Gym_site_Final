@@ -97,8 +97,8 @@ export default function Registration() {
       setLogin(true)
       setShow(true)
       setTimeout(() => {
-        navigate('/')
-      }, 5000);
+        navigate('/regalert')
+      }, 1000);
     }
   }
 }
@@ -155,10 +155,7 @@ export default function Registration() {
         <p className={RegisterStyle.loginLink}>Go Back To Home <Link to='/'>Home</Link> </p>
     
       </form>
-      {show ? <div>
-        <div id={RegisterStyle.timer}></div>
-        <p  className={RegisterStyle.redirection}>Now You Can Go To <Link to='/'>Home</Link> To Get Subscription</p> 
-        </div> : ""}
+    
     </div>
     </div>
 </>

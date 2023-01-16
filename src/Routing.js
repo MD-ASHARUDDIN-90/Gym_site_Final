@@ -8,6 +8,7 @@ import Registration from './component/Registration'
 import Login from './component/Login'
 import Activity from './component/Activity'
 import Activity1 from './component/Activity1'
+import RegAlert from './component/RegAlert'
 
 export default function Routing(){
   return(
@@ -21,6 +22,7 @@ export default function Routing(){
       <Route path='/login' element={<Login/>}/>
       <Route path='/activity' element={<Activity/>}/>
       <Route path='/activity1' element={<Activity1/>}/>
+      <Route path='/regalert' element={<RegAlert/>}/>
 
     </Routes>
 
