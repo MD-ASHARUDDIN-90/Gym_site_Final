@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+ # About 
+ This is website based on Fitness and GYM
+ User can register themselves
+ User can login 
+ User can take subscription of some exclusive packages
+ After subscribing they can acces there subsription packages activites to get the details.
+ Logout option
+ 
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
